@@ -20,7 +20,7 @@ function hasConfigOrEntityChanged(element, changedProps) {
   return true;
 }
 
-class PollenHUCard extends LitElement {
+class PollenFRCard extends LitElement {
 
   static get properties() {
     return {
@@ -32,12 +32,12 @@ class PollenHUCard extends LitElement {
   _getPollens(hass, sensor_name, above_level) {
     var res = [];
     if (typeof hass.states[`sensor.${sensor_name}`] != "undefined") {
-      const data1 = hass.states[`sensor.${sensor_name}`].attributes['pollens'];
+      const data1 = hass.states[`sensor.${sensor_name}`].attributes['risks'];
       Object.keys(data1 || {}).forEach(function (key) {
-        if ( parseInt(data1[key].value, 10) > above_level ) {
+        if ( parseInt(data1[key].level, 10) > above_level ) {
           res.push({
-            name: data1[key].name,
-            concentration: "level" + data1[key].value,
+            name: data1[key].pollenName,
+            concentration: "level" + data1[key].level,
           });
         }
       });
@@ -47,8 +47,8 @@ class PollenHUCard extends LitElement {
 
   setConfig(config) {
     const defaultConfig = {
-      'no_pollens_label': 'No pollens',
-      'sensor_name': 'pollen_hu',
+      'no_pollens_label': 'Pas de pollens',
+      'sensor_name': 'pollens',
       'above_level': 2,
       'title': 'Pollens',
     }
@@ -134,13 +134,13 @@ class PollenHUCard extends LitElement {
   }
 }
 
-customElements.define('pollen-hu-card', PollenHUCard);
+customElements.define('pollen-fr-card', PollenFRCard);
 
 // Puts card into the UI card picker dialog
 (window).customCards = (window).customCards || [];
 (window).customCards.push({
-  type: 'pollen-hu-card',
-  name: 'Pollen Information Hungary Card',
+  type: 'pollen-fr-card',
+  name: 'Pollen Information French Card',
   preview: true,
-  description: 'This Lovelace custom card displays pollen information provided by the Pollen Information Hungary custom Integration.',
+  description: 'This Lovelace custom card displays pollen information provided by the Pollen Information France custom Integration.',
 });
