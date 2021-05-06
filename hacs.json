@@ -1,7 +1,7 @@
 {
-  "name": "Pollen Information Card for Hungary ",
+  "name": "Pollen Information Card for France ",
   "content_in_root": "true",
-  "filename": "pollen-hu-card.js",
+  "filename": "pollen-fr-card.js",
   "render_readme": "true",
-  "country": ["HU"]
+  "country": ["FR"]
 }
