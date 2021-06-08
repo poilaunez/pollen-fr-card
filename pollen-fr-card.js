@@ -124,6 +124,9 @@ class PollenFRCard extends LitElement {
     .level4 {
       color: red;
     }
+    .level5 {
+      color: firebrick;
+    }
     .levelicon {
       --mdc-icon-size: 2.5em;
     }
